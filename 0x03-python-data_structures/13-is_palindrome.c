@@ -4,9 +4,9 @@
  * reverse_linked_list - reverses a singly linked list
  * @head: pointer to linked list head
  *
- * Return: pointer to head of reversed list
+ * Return: Always 0
  */
-void reverse_listint(listint_t **head)
+void reverse_linked_list(listint_t **head)
 {
 	listint_t *prev = NULL;
 	listint_t *current = *head;
@@ -21,7 +21,6 @@ void reverse_listint(listint_t **head)
 	}
 
 	*head = prev;
-	return (*head);
 }
 
 /**
@@ -32,7 +31,7 @@ void reverse_listint(listint_t **head)
  */
 int is_palindrome(listint_t **head)
 {
-	"""Floyd's algrithm"""
+	/*Floyd's algorithm*/
 	listint_t *slow = *head, *fast = *head, *temp = *head, *temp_two = NULL;
 
 	if (*head == NULL || (*head)->next == NULL)
@@ -54,11 +53,11 @@ int is_palindrome(listint_t **head)
 		slow = slow->next;
 	}
 
-	temp_two = reverse_listint(&temp_two);
+	reverse_linked_list(&temp_two);
 
 	while (temp && temp_two)
 	{
-		if (temp->n == dup->n)
+		if (temp->n == temp_two->n)
 		{
 			temp_two = temp_two->next;
 			temp = temp->next;
