@@ -6,11 +6,11 @@
  */
 void print_python_list_info(PyObject *p)
 {
-	int size, mem, i;
+	int size, i;
 	PyObject *obj;
+	PyListObject *mem = (PyListObject *)p;
 
 	size = Py_SIZE(p);
-	mem = ((PyListObject *)p);
 
 	printf("[*] Size of the Python List = %d\n", size);
 	printf("[*] Allocated = %d\n", mem->allocated);
