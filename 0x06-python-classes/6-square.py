@@ -6,13 +6,14 @@
 class Square:
     """This is the square"""
 
-    def __init__(self, size=0):
+    def __init__(self, size=0, position=(0, 0)):
         """Initialize the square
         Args:
             size(int): size of the square
         """
 
         self.size = size
+        self.position = position
 
     def area(self):
         """Compute the area of the square"""
@@ -62,7 +63,7 @@ class Square:
     def my_print(self):
         """Print the square with the # character."""
 
-        if self.__size = 0:
+        if self.__size == 0:
             print("")
             return
 
