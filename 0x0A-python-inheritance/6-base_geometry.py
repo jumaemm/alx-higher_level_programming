@@ -4,7 +4,7 @@
 
 class BaseGeometry():
     """empty class for now"""
-    
+
     def area(self):
         """Throws exception"""
 
