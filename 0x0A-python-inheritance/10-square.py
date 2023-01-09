@@ -10,7 +10,7 @@ class Square(Rectangle):
         """Initialize the square
 
         Args:
-            side length of the square
+            size (int): side length of the square
         """
 
         self.integer_validator("size", size)
