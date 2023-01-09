@@ -1,0 +1,70 @@
+=================================
+How to use 5-text_indentation.py
+=================================
+
+This is a module to indent input text
+
+Usage
+======
+
+``text_indentation(text)`` prints a text with 2 new lines after each of these characters: ., ? and :.
+
+::
+
+	>>> text_indentation = __import__('5-text_indentation').text_indentation
+	>>> text_indentation("Why are you running?")
+	Why are you running?
+	<BLANKLINE>
+
+There is no space at beginning or ending of line
+
+::
+
+	>>> text_indentation("    Why are you running?")
+	Why are you running?
+	<BLANKLINE>
+
+::
+
+	>>> text_indentation("Why are you running?       ")
+	Why are you running?
+	<BLANKLINE>
+
+::
+
+	>>> text_indentation("Why are you running? I am asking you.    ")
+	Why are you running?
+	<BLANKLINE>
+	I am asking you.
+	<BLANKLINE>
+
+Only text ending with one of ``.?:`` are printed with a new line at the end
+
+::
+
+	>>> text_indentation("Why are you not actually running,")
+	Why are you not actually running,
+
+
+Invalid string
+==============
+
+Text must be a string. Otherwise raise TypeError
+
+::
+
+	>>> text_indentation(535466)
+	Traceback (most recent call last):
+	TypeError: text must be a string
+
+::
+
+	>>> text_indentation({'keys': 'house'})
+	Traceback (most recent call last):
+	TypeError: text must be a string
+
+::
+
+	>>> text_indentation(None)
+	Traceback (most recent call last):
+	TypeError: text must be a string
