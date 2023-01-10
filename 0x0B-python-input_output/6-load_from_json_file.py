@@ -8,5 +8,5 @@ def load_from_json_file(filename):
         Arguments:
             filename (str): name of the file to be created
     """
-    with open(filename, 'w', encoding="utf-8") as f:
+    with open(filename) as f:
         return json.load(f)
