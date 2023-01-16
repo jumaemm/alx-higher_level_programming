@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """Represents a class rectangel inheriting from the Base class"""
-Base = __import__('base.py').Base
+from models.base import Base
 
 
 class Rectangle(Base):
@@ -141,3 +141,13 @@ class Rectangle(Base):
                     self.x = value
                 elif key == "y":
                     self.y = value
+
+    def to_dictionary(self):
+        """Return the dictionary representation of the instance."""
+        return {
+            "id": self.id,
+            "width": self.width,
+            "height": self.height,
+            "x": self.x,
+            "y": self.y
+        }
