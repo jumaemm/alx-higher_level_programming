@@ -1,6 +1,8 @@
 #!/usr/bin/python3
 """Base model for core functionality"""
 import json
+import csv
+import turtle
 
 
 class Base:
@@ -77,3 +79,85 @@ class Base:
                 return [cls.create(**d) for d in list_dicts]
         except IOError:
             return []
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """Serializes in CSV
+
+        Arguments:
+            cls: class
+            list_objs: list of base instances
+        """
+        filename = cls.__name__ + ".csv"
+        with open(filename, "w", newline="") as f:
+            if list_objs is None or list_objs == []:
+                f.write("[]")
+            else:
+                if cls.__name__ == "Rectangle":
+                    props = ["id", "width", "height", "x", "y"]
+                else:
+                    """Square"""
+                    props = ["id", "size", "x", "y"]
+                writer = csv.DictWriter(f, fieldnames=props)
+                for inst in list_objs:
+                    writer.writerow(inst.to_dictionary())
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """Deserialize a csv file
+
+        """
+        filename = cls.__name__ + ".csv"
+        try:
+            with open(filename, "r", newline="") as f:
+                if cls.__name__ == "Rectangle":
+                    props = ["id", "width", "height", "x", "y"]
+                else:
+                    props = ["id", "size", "x", "y"]
+                list_dicts = csv.DictReader(f, fieldnames=props)
+                list_dicts = [dict([key, int(value)] for key, value in
+                                d.items()) for d in list_dicts]
+                return (cls.create(**d) for d in list_dicts)
+        except IOError:
+            return []
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """opens a window and draws all Rectangles and Squares
+
+        Arguments:
+            list_rectangles: list of rectangles
+            list_squares: list of squares
+        """
+        drawing = turtle.Turtle()
+        drawing.screen.bgcolor("#00ffad")
+        drawing.pensize(2)
+        drawing.shape("turtle")
+        drawing.color("#ff0000")
+
+        for rect in list_rectangles:
+            drawing.showturtle()
+            drawing.up()
+            drawing.goto(rect.x, rect.y)
+            drawing.down()
+            for i in range(2):
+                drawing.forward(rect.width)
+                drawing.left(90)
+                drawing.forward(rect.height)
+                drawing.left(90)
+            drawing.hideturtle()
+
+        drawing.color("#8a00ff")
+        for square in list_squares:
+            drawing.showturtle()
+            drawing.up()
+            drawing.goto(square.x, square.y)
+            drawing.down()
+            for j in range(2):
+                drawing.forward(square.size)
+                drawing.left(90)
+                drawing.forward(square.size)
+                drawing.left(90)
+            drawing.hideturtle()
+
+        drawing.exitonclick()
