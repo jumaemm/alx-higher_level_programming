@@ -17,10 +17,15 @@ if __name__ == "__main__":
     session = Session()
 
     flag_check = 0
-    for state in session.query(State):
+    """for state in session.query(State):
         if state.name == argv[4]:
             print("{}".format(state.id))
             flag_check = 1
             break
     if (flag_check != 1):
+        print("Not found")"""
+    state = session.query(State).filter(State.name == argv[4]).first()
+    if state:
+        print("{}".format(state.id))
+    else:
         print("Not found")
